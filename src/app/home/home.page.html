@@ -1,0 +1,85 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Crud
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Signup Form</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <form [formGroup]="profileForm" (ngSubmit)="onSubmit(profileForm.value) ">
+
+    <ion-text> Your Name</ion-text>
+    <ion-input type="text" placeholder="FirstName" formControlName="firstName"></ion-input>
+    <div
+      *ngIf="profileForm.controls['firstName']?.hasError('required') && (profileForm.controls['firstName'].touched || profileForm.controls['firstName'].dirty)">
+      <ion-text color="danger">First name is required.</ion-text>
+    </div>
+    <div
+      *ngIf="profileForm.controls['firstName']?.hasError('minlength') && (profileForm.controls['firstName'].touched || profileForm.controls['firstName'].dirty)">
+      <ion-text color="danger">First name should'not be 2 words.</ion-text>
+    </div>
+
+    <ion-input type="text" placeholder="LastName" formControlName="lastName"></ion-input>
+    <div
+      *ngIf="profileForm.controls['lastName']?.hasError('required') && (profileForm.controls['lastName'].touched || profileForm.controls['lastName'].dirty)">
+      <ion-text color="danger">Last name is required.</ion-text>
+    </div>
+
+    <ion-radio-group formControlName="gender">
+      <ion-text>Gender : </ion-text>
+      <ion-radio value="male">Male</ion-radio>
+      <ion-radio value="female">Female</ion-radio>
+    </ion-radio-group>
+
+    <br>
+    <br>
+
+    <ion-text>Father Name</ion-text>
+    <ion-input type="text" placeholder="Please Enter Your FatherName" formControlName="fathername"></ion-input>
+    <div
+      *ngIf="profileForm.controls['fathername']?.hasError('required') && (profileForm.controls['fathername'].touched || profileForm.controls['fathername'].dirty )">
+      <ion-text color="danger">Father Name Is Required</ion-text>
+    </div>
+    <br>
+
+    <ion-text>Mother Name</ion-text>
+    <ion-input type="text" placeholder="Please Enter Your MotherName" formControlName="mothername"></ion-input>
+    <div
+      *ngIf="profileForm.controls['mothername']?.hasError('required') && (profileForm.controls['mothername'].touched || profileForm.controls['mothername'].dirty)">
+      <ion-text color="danger">Mother Name is Required</ion-text>
+    </div>
+  
+    <ion-text>Mobile Number</ion-text>
+    <ion-input type="number" placeholder="Please Enter Your 10 Digit Mobile Number"
+      formControlName="mobilenumber"></ion-input>
+      <div
+      *ngIf="profileForm.controls['mobilenumber']?.hasError('required') && (profileForm.controls['mobilenumber'].touched || profileForm.controls['mobilenumber'].dirty)">
+      <ion-text color="danger">Mobile Number is Required</ion-text>
+    </div>
+    <div
+      *ngIf="profileForm.controls['mobilenumber']?.hasError('pattern') && (profileForm.controls['mobilenumber'].touched || profileForm.controls['firstName'].dirty)">
+      <ion-text color="danger">MobileNumber should'not be less than 10 digit</ion-text>
+    </div>
+    <ion-text>Email</ion-text>
+    <ion-input type="text" placeholder="Please Enter Your Email" formControlName="email"></ion-input>
+    <div
+      *ngIf="profileForm.controls['email']?.hasError('required') && (profileForm.controls['email'].touched || profileForm.controls['email'].dirty)">
+      <ion-text color="danger">Email Is Required</ion-text>
+    </div>
+    <ion-text>Address</ion-text>
+    <ion-input type="text" placeholder="Please Full Address" formControlName="address"></ion-input>
+    <div
+      *ngIf="profileForm.controls['address']?.hasError('required') && (profileForm.controls['address'].touched || profileForm.controls['address'].dirty )">
+      <ion-text color="danger">Address Is Required</ion-text>
+    </div>
+    <ion-button type="submit" [disabled]="profileForm.invalid" routerLink="/list">Submit</ion-button>
+
+
+  </form>
+  <ion-button type="button" routerLink="/list">View</ion-button>
+</ion-content>
